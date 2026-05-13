@@ -9,11 +9,13 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { articles, categories } from "../data/articles";
+import { categories } from "../data/articles";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useArticles } from "../contexts/ArticlesContext";
 
 export function CentralAsianAnalysisSection() {
   const { t } = useLanguage();
+  const { articles, loading, error } = useArticles();
   const [selectedCategory, setSelectedCategory] =
     useState("All");
 
@@ -117,6 +119,16 @@ export function CentralAsianAnalysisSection() {
               ))}
             </div>
           </motion.div>
+
+          {/* Loading / error state */}
+          {loading && (
+            <p className="text-white/50 mb-6">Loading articles…</p>
+          )}
+          {error && !loading && (
+            <p className="text-red-400 mb-6 border border-red-500/30 bg-red-500/10 rounded px-3 py-2">
+              {error}
+            </p>
+          )}
 
           {/* Articles Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

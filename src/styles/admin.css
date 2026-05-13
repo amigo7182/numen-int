@@ -1,0 +1,299 @@
+/* Scoped styles for the admin login and dashboard.
+   These cover utilities and overrides that are not present in the
+   precompiled Tailwind bundle (index.css). */
+
+.admin-page {
+  position: relative;
+}
+
+.admin-card {
+  width: 100%;
+  max-width: 26rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin-card-wide {
+  width: 100%;
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* A soft teal glow behind the lock badge. */
+.admin-badge {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(45, 212, 191, 0.22),
+    rgba(45, 212, 191, 0.04) 70%
+  );
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(45, 212, 191, 0.08),
+    0 0 24px rgba(45, 212, 191, 0.18);
+}
+
+/* Inputs in the admin forms. Dark, glassy, with proper focus + autofill. */
+.admin-input {
+  width: 100%;
+  padding: 0.625rem 0.875rem 0.625rem 2.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  outline: none;
+  appearance: none;
+}
+
+.admin-input--plain {
+  padding-left: 0.875rem;
+}
+
+.admin-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.admin-input:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-input:focus {
+  border-color: rgba(45, 212, 191, 0.55);
+  box-shadow:
+    0 0 0 3px rgba(45, 212, 191, 0.12),
+    0 0 16px rgba(45, 212, 191, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Kill browser autofill yellow/white and keep the dark theme. */
+.admin-input:-webkit-autofill,
+.admin-input:-webkit-autofill:hover,
+.admin-input:-webkit-autofill:focus,
+.admin-input:-webkit-autofill:active {
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.92) !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(20, 28, 46, 0.85) inset !important;
+  caret-color: rgba(255, 255, 255, 0.92);
+  transition: background-color 600000s ease-in-out 0s, color 600000s ease-in-out 0s;
+}
+
+.admin-input-wrap {
+  position: relative;
+}
+
+.admin-input-wrap .admin-input-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+.admin-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 0.5rem;
+}
+
+.admin-textarea {
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.admin-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.admin-textarea:focus {
+  border-color: rgba(45, 212, 191, 0.55);
+  box-shadow:
+    0 0 0 3px rgba(45, 212, 191, 0.12),
+    0 0 16px rgba(45, 212, 191, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.admin-select {
+  width: 100%;
+  padding: 0.625rem 2rem 0.625rem 0.875rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.92);
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.admin-select:focus {
+  border-color: rgba(45, 212, 191, 0.55);
+  box-shadow:
+    0 0 0 3px rgba(45, 212, 191, 0.12),
+    0 0 16px rgba(45, 212, 191, 0.18);
+}
+
+.admin-btn-primary {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(45, 212, 191, 0.18),
+    rgba(45, 212, 191, 0.28)
+  );
+  border: 1px solid rgba(45, 212, 191, 0.55);
+  color: rgb(94, 234, 212);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
+}
+
+.admin-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(
+    135deg,
+    rgba(45, 212, 191, 0.28),
+    rgba(45, 212, 191, 0.38)
+  );
+  box-shadow: 0 6px 24px -8px rgba(45, 212, 191, 0.45);
+}
+
+.admin-btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.admin-btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.875rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.admin-btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.admin-divider::before,
+.admin-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.admin-alert-error {
+  font-size: 0.85rem;
+  color: rgb(252, 165, 165);
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+}
+
+.admin-alert-success {
+  font-size: 0.85rem;
+  color: rgb(94, 234, 212);
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+}
+
+.admin-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 160ms ease, transform 160ms ease;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.admin-back-link:hover {
+  color: rgb(94, 234, 212);
+}
+
+.admin-back-link:hover svg {
+  transform: translateX(-2px);
+}
+
+.admin-back-link svg {
+  transition: transform 160ms ease;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+
+@media (min-width: 768px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .admin-form-grid .admin-col-span-2 {
+    grid-column: span 2;
+  }
+}

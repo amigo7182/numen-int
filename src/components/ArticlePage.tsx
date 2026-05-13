@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Calendar, Clock, User, Tag, Share2 } from 'lucide-react';
-import { getArticleById, Article } from '../data/articles';
+import { Article } from '../data/articles';
+import { fetchArticle } from '../lib/api';
 import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -11,20 +12,30 @@ export function ArticlePage() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const [article, setArticle] = useState<Article | null>(null);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+    setArticle(null);
+    setNotFound(false);
     if (id) {
-      const foundArticle = getArticleById(parseInt(id));
-      if (foundArticle) {
-        setArticle(foundArticle);
-      } else {
-        // Article not found, redirect to home
-        navigate('/');
-      }
+      fetchArticle(parseInt(id))
+        .then((data) => {
+          if (!cancelled) setArticle(data);
+        })
+        .catch(() => {
+          if (!cancelled) setNotFound(true);
+        });
     }
-    // Scroll to top when article loads
     window.scrollTo(0, 0);
-  }, [id, navigate]);
+    return () => {
+      cancelled = true;
+    };
+  }, [id]);
+
+  useEffect(() => {
+    if (notFound) navigate('/');
+  }, [notFound, navigate]);
 
   if (!article) {
     return (

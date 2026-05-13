@@ -12,7 +12,10 @@ import { InvestmentSection } from './components/InvestmentSection';
 import { VisionSection } from './components/VisionSection';
 import { ConclusionSection } from './components/ConclusionSection';
 import { ArticlePage } from './components/ArticlePage';
+import { AdminLogin } from './components/admin/AdminLogin';
+import { AdminDashboard } from './components/admin/AdminDashboard';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { ArticlesProvider } from './contexts/ArticlesContext';
 
 function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -81,21 +84,26 @@ function HomePage() {
 export default function App() {
   return (
     <LanguageProvider>
-      <Router>
-        <div className="relative min-h-screen">
-          {/* Fixed animated background */}
-          <AnimatedBackground />
+      <ArticlesProvider>
+        <Router>
+          <div className="relative min-h-screen">
+            {/* Fixed animated background */}
+            <AnimatedBackground />
 
-          {/* Foreground content */}
-          <div className="relative z-10">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/article/:id" element={<ArticlePage />} />
-            </Routes>
+            {/* Foreground content */}
+            <div className="relative z-10">
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/article/:id" element={<ArticlePage />} />
+                <Route path="/admin" element={<AdminLogin />} />
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              </Routes>
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+      </ArticlesProvider>
     </LanguageProvider>
   );
 }
