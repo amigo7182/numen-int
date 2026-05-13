@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
-import { Languages } from "lucide-react";
+import { Instagram, Languages } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useNavigate, useLocation } from "react-router-dom";
+
+const INSTAGRAM_URL =
+  "https://www.instagram.com/numen_intel?igsh=NWx4cTZwcXNhbml6&utm_source=qr";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -108,6 +111,18 @@ export function Navbar() {
               {t('nav.vision')}
             </button>
             
+            {/* Instagram */}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Numen Intelligence on Instagram"
+              title="Instagram"
+              className="text-white/70 hover:text-teal-400 transition-colors"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}

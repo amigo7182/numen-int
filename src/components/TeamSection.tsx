@@ -12,6 +12,11 @@ const teamMemberLinkedIn = [
   "https://www.linkedin.com/in/aidynbekmussa/",
   "https://www.linkedin.com/in/sagitbakirov/",
 ];
+const teamMemberEmail = [
+  "kabdygali@numenint.com",
+  "mussa@numenint.com",
+  "bakirov@numenint.com",
+];
 
 export function TeamSection() {
   const { t } = useLanguage();
@@ -118,17 +123,24 @@ export function TeamSection() {
 
                   {/* Contact Icons */}
                   <div className="flex items-center space-x-4 pt-4 border-t border-white/10">
-                    <button
-                      onClick={() =>
-                        window.open(teamMemberLinkedIn[index], "_blank")
-                      }
+                    <a
+                      href={teamMemberLinkedIn[index]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name} on LinkedIn`}
+                      title={`${member.name} on LinkedIn`}
                       className="text-white/40 hover:text-teal-400 transition-colors"
                     >
                       <Linkedin className="w-5 h-5" />
-                    </button>
-                    <button className="text-white/40 hover:text-teal-400 transition-colors">
+                    </a>
+                    <a
+                      href={`mailto:${teamMemberEmail[index]}`}
+                      aria-label={`Email ${member.name}`}
+                      title={teamMemberEmail[index]}
+                      className="text-white/40 hover:text-teal-400 transition-colors"
+                    >
                       <Mail className="w-5 h-5" />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </motion.div>
